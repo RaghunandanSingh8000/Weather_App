@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Uni Logo" class="logo" />
+    <h1>Weather App <i class="fa-solid fa-cloud-sun"></i></h1>
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Enter city name" aria-label="City name" />
+      <button onclick="getWeather()" aria-label="Search weather"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button id="voiceBtn" aria-label="Voice search"><i class="fa-solid fa-microphone"></i></button>
+    </div>
+    <div id="weatherInfo" class="weather-info">
+      <!-- Weather data will appear here -->
+    </div>
+  </div>
+  <script>
+    // Voice search feature (progressive enhancement)
+    const voiceBtn = document.getElementById('voiceBtn');
+    if ('webkitSpeechRecognition' in window && voiceBtn) {
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      voiceBtn.onclick = () => {
+        recognition.start();
+        voiceBtn.classList.add('listening');
+      };
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('cityInput').value = transcript;
+        getWeather();
+        voiceBtn.classList.remove('listening');
+      };
+      recognition.onerror = () => voiceBtn.classList.remove('listening');
+      recognition.onend = () => voiceBtn.classList.remove('listening');
+    } else if (voiceBtn) {
+      voiceBtn.style.display = 'none'; // Hide if not supported
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

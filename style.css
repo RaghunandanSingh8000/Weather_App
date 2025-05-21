@@ -1,0 +1,191 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  /* Unique animated gradient background */
+  background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #fcb69f);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.container {
+  max-width: 400px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 32px 24px;
+  text-align: center;
+  transition: box-shadow 0.3s;
+}
+
+.container:hover {
+  box-shadow: 0 12px 40px rgba(79,140,255,0.18);
+}
+
+.logo {
+  width: 64px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 0;
+}
+
+#cityInput {
+  padding: 10px 14px;
+  border: 1px solid #aaa;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  font-size: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  background: #4f8cff;
+  color: #fff;
+  border-radius: 0 8px 8px 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+.weather-info {
+  margin-top: 20px;
+  min-height: 120px;
+  transition: background 0.3s;
+  border-radius: 12px;
+  background: rgba(241,245,249,0.5);
+  box-shadow: 0 2px 8px rgba(79,140,255,0.07);
+}
+
+.weather-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.weather-icon {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+}
+/* ...existing code... */
+
+/* Voice button style and animation */
+#voiceBtn {
+  background: #fff;
+  color: #4f8cff;
+  border: 1px solid #4f8cff;
+  border-radius: 8px;
+  margin-left: 8px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(79,140,255,0.07);
+}
+
+#voiceBtn:hover, #voiceBtn.listening {
+  background: #4f8cff;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.18);
+}
+
+/* Microphone icon animation when listening */
+#voiceBtn.listening i {
+  animation: pulseMic 1s infinite;
+}
+
+@keyframes pulseMic {
+  0% { transform: scale(1); color: #fff; }
+  50% { transform: scale(1.2); color: #fcb69f; }
+  100% { transform: scale(1); color: #fff; }
+}
+
+/* Weather info fade-in animation */
+.weather-info {
+  animation: fadeInWeather 0.7s;
+}
+
+@keyframes fadeInWeather {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Sun/Moon icon animation */
+.weather-icon {
+  transition: transform 0.3s;
+}
+.weather-icon:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Accessibility: focus ring for buttons */
+button:focus, #voiceBtn:focus {
+  outline: 2px solid #fbc2eb;
+  outline-offset: 2px;
+}
+
+/* Extra: subtle shadow on input focus */
+#cityInput:focus {
+  box-shadow: 0 0 0 3px #fbc2eb55;
+}
+
+/* Extra: container slight scale on hover for interactivity */
+.container:hover {
+  transform: scale(1.01);
+}
+
+/* ...existing code... */
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 16px 4px;
+    max-width: 98vw;
+  }
+  .logo {
+    width: 48px;
+  }
+  .weather-icon {
+    width: 32px;
+    height: 32px;
+  }
+  #cityInput, button {
+    font-size: 14px;
+    padding: 8px 8px;
+  }
+}
+
+/* New feature: subtle input focus effect */
+#cityInput:focus {
+  border-color: #4f8cff;
+  box-shadow: 0 0 0 2px #a1c4fd55;
+  background: #f0f8ff;
+}
+
+/* New feature: animated button icon (if using Font Awesome) */
+button i {
+  transition: transform 0.2s;
+}
+button:hover i {
+  transform: rotate(-15deg) scale(1.2);
+}
